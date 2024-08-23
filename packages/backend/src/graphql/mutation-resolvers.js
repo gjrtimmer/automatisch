@@ -1,4 +1,3 @@
-import createAppAuthClient from './mutations/create-app-auth-client.ee.js';
 import createAppConfig from './mutations/create-app-config.ee.js';
 import createConnection from './mutations/create-connection.js';
 import createFlow from './mutations/create-flow.js';
@@ -30,7 +29,6 @@ import upsertSamlAuthProvidersRoleMappings from './mutations/upsert-saml-auth-pr
 import verifyConnection from './mutations/verify-connection.js';
 
 const mutationResolvers = {
-  createAppAuthClient,
   createAppConfig,
   createConnection,
   createFlow,
