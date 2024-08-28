@@ -4,6 +4,7 @@ import { authorizeUser } from '../../../helpers/authorization.js';
 import getFlowsAction from '../../../controllers/api/v1/connections/get-flows.js';
 import testConnectionAction from '../../../controllers/api/v1/connections/test-connection.js';
 import verifyConnectionAction from '../../../controllers/api/v1/connections/verify-connection.js';
+import resetConnectionAction from '../../../controllers/api/v1/connections/reset-connection.js';
 
 const router = Router();
 
@@ -19,6 +20,13 @@ router.post(
   authenticateUser,
   authorizeUser,
   testConnectionAction
+);
+
+router.post(
+  '/:connectionId/reset',
+  authenticateUser,
+  authorizeUser,
+  resetConnectionAction
 );
 
 router.post(
