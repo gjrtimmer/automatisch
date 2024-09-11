@@ -97,6 +97,10 @@ const authorizationList = {
     action: 'update',
     subject: 'Flow',
   },
+  'POST /api/v1/connections/:connectionId/auth-url': {
+    action: 'create',
+    subject: 'Connection',
+  },
 };
 
 export const authorizeUser = async (request, response, next) => {
