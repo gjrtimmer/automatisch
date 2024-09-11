@@ -6,6 +6,7 @@ import getFlowAction from '../../../controllers/api/v1/flows/get-flow.js';
 import updateFlowAction from '../../../controllers/api/v1/flows/update-flow.js';
 import createFlowAction from '../../../controllers/api/v1/flows/create-flow.js';
 import createStepAction from '../../../controllers/api/v1/flows/create-step.js';
+import duplicateFlowAction from '../../../controllers/api/v1/flows/duplicate-flow.js';
 
 const router = Router();
 
@@ -18,6 +19,12 @@ router.post(
   authenticateUser,
   authorizeUser,
   createStepAction
+);
+router.post(
+  '/:flowId/duplicate',
+  authenticateUser,
+  authorizeUser,
+  duplicateFlowAction
 );
 
 export default router;

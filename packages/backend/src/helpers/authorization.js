@@ -97,6 +97,10 @@ const authorizationList = {
     action: 'update',
     subject: 'Flow',
   },
+  'POST /api/v1/flows/:flowId/duplicate': {
+    action: 'create',
+    subject: 'Flow',
+  },
 };
 
 export const authorizeUser = async (request, response, next) => {
