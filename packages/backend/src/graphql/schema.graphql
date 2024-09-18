@@ -5,7 +5,6 @@ type Mutation {
   createConnection(input: CreateConnectionInput): Connection
   createFlow(input: CreateFlowInput): Flow
   createUser(input: CreateUserInput): UserWithAcceptInvitationUrl
-  deleteCurrentUser: Boolean
   deleteFlow(input: DeleteFlowInput): Boolean
   deleteStep(input: DeleteStepInput): Step
   executeFlow(input: ExecuteFlowInput): executeFlowType
