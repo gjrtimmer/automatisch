@@ -6,7 +6,6 @@ type Mutation {
   createFlow(input: CreateFlowInput): Flow
   createUser(input: CreateUserInput): UserWithAcceptInvitationUrl
   deleteCurrentUser: Boolean
-  deleteFlow(input: DeleteFlowInput): Boolean
   deleteStep(input: DeleteStepInput): Step
   executeFlow(input: ExecuteFlowInput): executeFlowType
   generateAuthUrl(input: GenerateAuthUrlInput): AuthLink
@@ -252,10 +251,6 @@ input UpdateFlowStatusInput {
 
 input ExecuteFlowInput {
   stepId: String!
-}
-
-input DeleteFlowInput {
-  id: String!
 }
 
 input UpdateStepInput {
