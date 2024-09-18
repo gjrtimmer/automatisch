@@ -4,7 +4,6 @@ type Query {
 type Mutation {
   createConnection(input: CreateConnectionInput): Connection
   createFlow(input: CreateFlowInput): Flow
-  createUser(input: CreateUserInput): UserWithAcceptInvitationUrl
   deleteCurrentUser: Boolean
   deleteFlow(input: DeleteFlowInput): Boolean
   deleteStep(input: DeleteStepInput): Step
@@ -273,12 +272,6 @@ input DeleteStepInput {
   id: String!
 }
 
-input CreateUserInput {
-  fullName: String!
-  email: String!
-  role: UserRoleInput!
-}
-
 input UserRoleInput {
   id: String
 }
@@ -371,11 +364,6 @@ type User {
   permissions: [Permission]
   createdAt: String
   updatedAt: String
-}
-
-type UserWithAcceptInvitationUrl {
-  user: User
-  acceptInvitationUrl: String
 }
 
 type Role {
