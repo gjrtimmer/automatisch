@@ -15,7 +15,6 @@ type Mutation {
   updateCurrentUser(input: UpdateCurrentUserInput): User
   updateFlowStatus(input: UpdateFlowStatusInput): Flow
   updateStep(input: UpdateStepInput): Step
-  updateUser(input: UpdateUserInput): User
   verifyConnection(input: VerifyConnectionInput): Connection
 }
 
@@ -281,13 +280,6 @@ input CreateUserInput {
 
 input UserRoleInput {
   id: String
-}
-
-input UpdateUserInput {
-  id: String!
-  fullName: String
-  email: String
-  role: UserRoleInput
 }
 
 input UpdateCurrentUserInput {
