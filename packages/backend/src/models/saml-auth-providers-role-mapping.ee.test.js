@@ -13,7 +13,13 @@ describe('SamlAuthProvidersRoleMapping model', () => {
     expect(SamlAuthProvidersRoleMapping.jsonSchema).toMatchSnapshot();
   });
 
-  it('required properties should be required', async () => {});
+  it('required properties should be required', async () => {
+    expect(SamlAuthProvidersRoleMapping).toRequireProperty('remoteRoleName');
+    expect(SamlAuthProvidersRoleMapping).toRequireProperty('roleId');
+    expect(SamlAuthProvidersRoleMapping).toRequireProperty(
+      'samlAuthProviderId'
+    );
+  });
 
   it('relationMappings should have samlAuthProvider relation', () => {
     const samlAuthProviderRelation =
