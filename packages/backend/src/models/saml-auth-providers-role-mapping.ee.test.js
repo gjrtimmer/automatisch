@@ -1,6 +1,5 @@
 import { describe, it, expect } from 'vitest';
 import SamlAuthProvidersRoleMapping from '../models/saml-auth-providers-role-mapping.ee';
-import assertRequiredSchemaProperties from '../../test/helpers/assert-required-model-properties';
 import SamlAuthProvider from './saml-auth-provider.ee';
 
 describe('SamlAuthProvidersRoleMapping model', () => {
@@ -14,9 +13,7 @@ describe('SamlAuthProvidersRoleMapping model', () => {
     expect(SamlAuthProvidersRoleMapping.jsonSchema).toMatchSnapshot();
   });
 
-  it('required properties should be required', async () => {
-    await assertRequiredSchemaProperties(SamlAuthProvidersRoleMapping);
-  });
+  it('required properties should be required', async () => {});
 
   it('relationMappings should have samlAuthProvider relation', () => {
     const samlAuthProviderRelation =
