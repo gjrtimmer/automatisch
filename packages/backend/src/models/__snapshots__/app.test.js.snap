@@ -1,0 +1,583 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`App model > findOneByKey > should return app info for given app key 1`] = `
+{
+  "actions": [
+    {
+      "description": "Translates text from one language to another.",
+      "key": "translateText",
+      "name": "Translate text",
+      "run": [Function],
+      "substeps": [
+        {
+          "key": "chooseConnection",
+          "name": "Choose connection",
+        },
+        {
+          "arguments": [
+            {
+              "description": "Text to be translated.",
+              "key": "text",
+              "label": "Text",
+              "required": true,
+              "type": "string",
+              "variables": true,
+            },
+            {
+              "description": "Language to translate the text to.",
+              "key": "targetLanguage",
+              "label": "Target Language",
+              "options": [
+                {
+                  "label": "Bulgarian",
+                  "value": "BG",
+                },
+                {
+                  "label": "Chinese (simplified)",
+                  "value": "ZH",
+                },
+                {
+                  "label": "Czech",
+                  "value": "CS",
+                },
+                {
+                  "label": "Danish",
+                  "value": "DA",
+                },
+                {
+                  "label": "Dutch",
+                  "value": "NL",
+                },
+                {
+                  "label": "English",
+                  "value": "EN",
+                },
+                {
+                  "label": "English (American)",
+                  "value": "EN-US",
+                },
+                {
+                  "label": "English (British)",
+                  "value": "EN-GB",
+                },
+                {
+                  "label": "Estonian",
+                  "value": "ET",
+                },
+                {
+                  "label": "Finnish",
+                  "value": "FI",
+                },
+                {
+                  "label": "French",
+                  "value": "FR",
+                },
+                {
+                  "label": "German",
+                  "value": "DE",
+                },
+                {
+                  "label": "Greek",
+                  "value": "EL",
+                },
+                {
+                  "label": "Hungarian",
+                  "value": "HU",
+                },
+                {
+                  "label": "Indonesian",
+                  "value": "ID",
+                },
+                {
+                  "label": "Italian",
+                  "value": "IT",
+                },
+                {
+                  "label": "Japanese",
+                  "value": "JA",
+                },
+                {
+                  "label": "Latvian",
+                  "value": "LV",
+                },
+                {
+                  "label": "Lithuanian",
+                  "value": "LT",
+                },
+                {
+                  "label": "Polish",
+                  "value": "PL",
+                },
+                {
+                  "label": "Portuguese",
+                  "value": "PT",
+                },
+                {
+                  "label": "Portuguese (Brazilian)",
+                  "value": "PT-BR",
+                },
+                {
+                  "label": "Portuguese (all Portuguese varieties excluding Brazilian Portuguese)",
+                  "value": "PT-PT",
+                },
+                {
+                  "label": "Romanian",
+                  "value": "RO",
+                },
+                {
+                  "label": "Russian",
+                  "value": "RU",
+                },
+                {
+                  "label": "Slovak",
+                  "value": "SK",
+                },
+                {
+                  "label": "Slovenian",
+                  "value": "SL",
+                },
+                {
+                  "label": "Spanish",
+                  "value": "ES",
+                },
+                {
+                  "label": "Swedish",
+                  "value": "SV",
+                },
+                {
+                  "label": "Turkish",
+                  "value": "TR",
+                },
+                {
+                  "label": "Ukrainian",
+                  "value": "UK",
+                },
+              ],
+              "required": true,
+              "type": "dropdown",
+              "value": "",
+              "variables": true,
+            },
+          ],
+          "key": "chooseTrigger",
+          "name": "Set up action",
+        },
+        {
+          "key": "testStep",
+          "name": "Test action",
+        },
+      ],
+    },
+  ],
+  "apiBaseUrl": "https://api.deepl.com",
+  "auth": {
+    "authenticationSteps": [
+      {
+        "arguments": [
+          {
+            "name": "key",
+            "value": "{key}",
+          },
+          {
+            "name": "formattedData",
+            "value": "{fields.all}",
+          },
+        ],
+        "name": "createConnection",
+        "type": "mutation",
+      },
+      {
+        "arguments": [],
+        "name": "verifyConnection",
+        "type": "mutation",
+      },
+    ],
+    "fields": [
+      {
+        "clickToCopy": false,
+        "description": "Screen name of your connection to be used on Automatisch UI.",
+        "key": "screenName",
+        "label": "Screen Name",
+        "placeholder": null,
+        "readOnly": false,
+        "required": true,
+        "type": "string",
+        "value": null,
+      },
+      {
+        "clickToCopy": false,
+        "description": "DeepL authentication key of your account.",
+        "key": "authenticationKey",
+        "label": "Authentication Key",
+        "placeholder": null,
+        "readOnly": false,
+        "required": true,
+        "type": "string",
+        "value": null,
+      },
+    ],
+    "isStillVerified": [Function],
+    "reconnectionSteps": [
+      {
+        "arguments": [],
+        "name": "resetConnection",
+        "type": "mutation",
+      },
+      {
+        "arguments": [
+          {
+            "name": "formattedData",
+            "value": "{fields.all}",
+          },
+        ],
+        "name": "updateConnection",
+        "type": "mutation",
+      },
+      {
+        "arguments": [],
+        "name": "verifyConnection",
+        "type": "mutation",
+      },
+    ],
+    "verifyCredentials": [Function],
+  },
+  "authDocUrl": "https://automatisch.io/docs/apps/deepl/connection",
+  "baseUrl": "https://deepl.com",
+  "beforeRequest": [
+    [Function],
+  ],
+  "iconUrl": "http://localhost:3000/apps/deepl/assets/favicon.svg",
+  "key": "deepl",
+  "name": "DeepL",
+  "primaryColor": "#0d2d45",
+  "supportsConnections": true,
+  "triggers": undefined,
+}
+`;
+
+exports[`App model > findOneByName > should return app info for given app name 1`] = `
+{
+  "actions": [
+    {
+      "description": "Translates text from one language to another.",
+      "key": "translateText",
+      "name": "Translate text",
+      "run": [Function],
+      "substeps": [
+        {
+          "key": "chooseConnection",
+          "name": "Choose connection",
+        },
+        {
+          "arguments": [
+            {
+              "description": "Text to be translated.",
+              "key": "text",
+              "label": "Text",
+              "required": true,
+              "type": "string",
+              "variables": true,
+            },
+            {
+              "description": "Language to translate the text to.",
+              "key": "targetLanguage",
+              "label": "Target Language",
+              "options": [
+                {
+                  "label": "Bulgarian",
+                  "value": "BG",
+                },
+                {
+                  "label": "Chinese (simplified)",
+                  "value": "ZH",
+                },
+                {
+                  "label": "Czech",
+                  "value": "CS",
+                },
+                {
+                  "label": "Danish",
+                  "value": "DA",
+                },
+                {
+                  "label": "Dutch",
+                  "value": "NL",
+                },
+                {
+                  "label": "English",
+                  "value": "EN",
+                },
+                {
+                  "label": "English (American)",
+                  "value": "EN-US",
+                },
+                {
+                  "label": "English (British)",
+                  "value": "EN-GB",
+                },
+                {
+                  "label": "Estonian",
+                  "value": "ET",
+                },
+                {
+                  "label": "Finnish",
+                  "value": "FI",
+                },
+                {
+                  "label": "French",
+                  "value": "FR",
+                },
+                {
+                  "label": "German",
+                  "value": "DE",
+                },
+                {
+                  "label": "Greek",
+                  "value": "EL",
+                },
+                {
+                  "label": "Hungarian",
+                  "value": "HU",
+                },
+                {
+                  "label": "Indonesian",
+                  "value": "ID",
+                },
+                {
+                  "label": "Italian",
+                  "value": "IT",
+                },
+                {
+                  "label": "Japanese",
+                  "value": "JA",
+                },
+                {
+                  "label": "Latvian",
+                  "value": "LV",
+                },
+                {
+                  "label": "Lithuanian",
+                  "value": "LT",
+                },
+                {
+                  "label": "Polish",
+                  "value": "PL",
+                },
+                {
+                  "label": "Portuguese",
+                  "value": "PT",
+                },
+                {
+                  "label": "Portuguese (Brazilian)",
+                  "value": "PT-BR",
+                },
+                {
+                  "label": "Portuguese (all Portuguese varieties excluding Brazilian Portuguese)",
+                  "value": "PT-PT",
+                },
+                {
+                  "label": "Romanian",
+                  "value": "RO",
+                },
+                {
+                  "label": "Russian",
+                  "value": "RU",
+                },
+                {
+                  "label": "Slovak",
+                  "value": "SK",
+                },
+                {
+                  "label": "Slovenian",
+                  "value": "SL",
+                },
+                {
+                  "label": "Spanish",
+                  "value": "ES",
+                },
+                {
+                  "label": "Swedish",
+                  "value": "SV",
+                },
+                {
+                  "label": "Turkish",
+                  "value": "TR",
+                },
+                {
+                  "label": "Ukrainian",
+                  "value": "UK",
+                },
+              ],
+              "required": true,
+              "type": "dropdown",
+              "value": "",
+              "variables": true,
+            },
+          ],
+          "key": "chooseTrigger",
+          "name": "Set up action",
+        },
+        {
+          "key": "testStep",
+          "name": "Test action",
+        },
+      ],
+    },
+  ],
+  "apiBaseUrl": "https://api.deepl.com",
+  "auth": {
+    "authenticationSteps": [
+      {
+        "arguments": [
+          {
+            "name": "key",
+            "value": "{key}",
+          },
+          {
+            "name": "formattedData",
+            "value": "{fields.all}",
+          },
+        ],
+        "name": "createConnection",
+        "type": "mutation",
+      },
+      {
+        "arguments": [],
+        "name": "verifyConnection",
+        "type": "mutation",
+      },
+    ],
+    "fields": [
+      {
+        "clickToCopy": false,
+        "description": "Screen name of your connection to be used on Automatisch UI.",
+        "key": "screenName",
+        "label": "Screen Name",
+        "placeholder": null,
+        "readOnly": false,
+        "required": true,
+        "type": "string",
+        "value": null,
+      },
+      {
+        "clickToCopy": false,
+        "description": "DeepL authentication key of your account.",
+        "key": "authenticationKey",
+        "label": "Authentication Key",
+        "placeholder": null,
+        "readOnly": false,
+        "required": true,
+        "type": "string",
+        "value": null,
+      },
+    ],
+    "isStillVerified": [Function],
+    "reconnectionSteps": [
+      {
+        "arguments": [],
+        "name": "resetConnection",
+        "type": "mutation",
+      },
+      {
+        "arguments": [
+          {
+            "name": "formattedData",
+            "value": "{fields.all}",
+          },
+        ],
+        "name": "updateConnection",
+        "type": "mutation",
+      },
+      {
+        "arguments": [],
+        "name": "verifyConnection",
+        "type": "mutation",
+      },
+    ],
+    "verifyCredentials": [Function],
+  },
+  "authDocUrl": "https://automatisch.io/docs/apps/deepl/connection",
+  "baseUrl": "https://deepl.com",
+  "beforeRequest": [
+    [Function],
+  ],
+  "iconUrl": "http://localhost:3000/apps/deepl/assets/favicon.svg",
+  "key": "deepl",
+  "name": "DeepL",
+  "primaryColor": "#0d2d45",
+  "supportsConnections": true,
+  "triggers": undefined,
+}
+`;
+
+exports[`App model > list should have list of applications keys 1`] = `
+[
+  "airtable",
+  "appwrite",
+  "azure-openai",
+  "carbone",
+  "clickup",
+  "code",
+  "cryptography",
+  "datastore",
+  "deepl",
+  "delay",
+  "discord",
+  "disqus",
+  "dropbox",
+  "filter",
+  "flickr",
+  "flowers-software",
+  "formatter",
+  "ghost",
+  "github",
+  "gitlab",
+  "google-calendar",
+  "google-drive",
+  "google-forms",
+  "google-sheets",
+  "google-tasks",
+  "helix",
+  "http-request",
+  "hubspot",
+  "invoice-ninja",
+  "jotform",
+  "mailchimp",
+  "mailerlite",
+  "mattermost",
+  "miro",
+  "notion",
+  "ntfy",
+  "odoo",
+  "openai",
+  "pipedrive",
+  "placetel",
+  "postgresql",
+  "pushover",
+  "reddit",
+  "removebg",
+  "rss",
+  "salesforce",
+  "scheduler",
+  "self-hosted-llm",
+  "signalwire",
+  "slack",
+  "smtp",
+  "spotify",
+  "strava",
+  "stripe",
+  "telegram-bot",
+  "todoist",
+  "trello",
+  "twilio",
+  "twitter",
+  "typeform",
+  "vtiger-crm",
+  "webhook",
+  "wordpress",
+  "xero",
+  "you-need-a-budget",
+  "youtube",
+  "zendesk",
+]
+`;
