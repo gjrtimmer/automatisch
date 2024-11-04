@@ -5,6 +5,9 @@ import Step from './step.js';
 import Flow from './flow.js';
 import Connection from './connection.js';
 import ExecutionStep from './execution-step.js';
+import { createFlow } from '../../test/factories/flow.js';
+import { createStep } from '../../test/factories/step.js';
+import { createExecutionStep } from '../../test/factories/execution-step.js';
 
 describe('Step model', () => {
   it('tableName should return correct name', () => {
@@ -163,6 +166,78 @@ describe('Step model', () => {
       step.type = 'action';
 
       expect(await step.getWebhookUrl()).toBe(undefined);
+    });
+  });
+
+  describe('getSetupFields', () => {
+    it('should return trigger setup substep fields in trigger step', async () => {
+      const step = new Step();
+      step.type = 'trigger';
+
+      const argumentsSpy = vi.fn();
+      vi.spyOn(step, 'getTriggerCommand').mockResolvedValue({
+        substeps: [{ key: 'chooseTrigger', arguments: argumentsSpy }],
+      });
+
+      expect(await step.getSetupFields()).toStrictEqual(argumentsSpy);
+    });
+
+    it('should return action setup substep fields in action step', async () => {
+      const step = new Step();
+      step.type = 'action';
+
+      const argumentsSpy = vi.fn();
+      vi.spyOn(step, 'getActionCommand').mockResolvedValue({
+        substeps: [{ key: 'chooseTrigger', arguments: argumentsSpy }],
+      });
+
+      expect(await step.getSetupFields()).toStrictEqual(argumentsSpy);
+    });
+  });
+
+  it.todo('getSetupAndDynamicFields');
+  it.todo('createDynamicFields');
+  it.todo('createDynamicData');
+  it.todo('updateWebhookUrl');
+
+  describe('delete', () => {
+    it('should delete the step and align the positions', async () => {
+      const flow = await createFlow();
+      await createStep({ flowId: flow.id, position: 1, type: 'trigger' });
+      await createStep({ flowId: flow.id, position: 2 });
+      const stepToDelete = await createStep({ flowId: flow.id, position: 3 });
+      await createStep({ flowId: flow.id, position: 4 });
+
+      await stepToDelete.delete();
+
+      const steps = await flow.$relatedQuery('steps');
+      const stepIds = steps.map((step) => step.id);
+
+      expect(stepIds).not.toContain(stepToDelete.id);
+    });
+
+    it('should align the positions of remaining steps', async () => {
+      const flow = await createFlow();
+      await createStep({ flowId: flow.id, position: 1, type: 'trigger' });
+      await createStep({ flowId: flow.id, position: 2 });
+      const stepToDelete = await createStep({ flowId: flow.id, position: 3 });
+      await createStep({ flowId: flow.id, position: 4 });
+
+      await stepToDelete.delete();
+
+      const steps = await flow.$relatedQuery('steps');
+      const stepPositions = steps.map((step) => step.position);
+
+      expect(stepPositions).toMatchObject([1, 2, 3]);
+    });
+
+    it('should delete related execution steps', async () => {
+      const step = await createStep();
+      const executionStep = await createExecutionStep({ stepId: step.id });
+
+      await step.delete();
+
+      expect(await executionStep.$query()).toBe(undefined);
     });
   });
 });
