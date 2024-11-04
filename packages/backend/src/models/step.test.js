@@ -5,6 +5,7 @@ import Step from './step.js';
 import Flow from './flow.js';
 import Connection from './connection.js';
 import ExecutionStep from './execution-step.js';
+import App from './app.js';
 
 describe('Step model', () => {
   it('tableName should return correct name', () => {
@@ -163,6 +164,51 @@ describe('Step model', () => {
       step.type = 'action';
 
       expect(await step.getWebhookUrl()).toBe(undefined);
+    });
+  });
+  describe('getTriggerCommand', () => {
+    it('should return trigger comamand when app key and key are defined in trigger step', async () => {
+      const step = new Step();
+      step.type = 'trigger';
+      step.appKey = 'webhook';
+      step.key = 'catchRawWebhook';
+
+      const findOneByKeySpy = vi.spyOn(App, 'findOneByKey');
+      const triggerCommand = await step.getTriggerCommand();
+
+      expect(findOneByKeySpy).toHaveBeenCalledWith(step.appKey);
+      expect(triggerCommand.key).toBe(step.key);
+    });
+
+    it('should return null when key is not defined', async () => {
+      const step = new Step();
+      step.type = 'trigger';
+      step.appKey = 'webhook';
+
+      expect(await step.getTriggerCommand()).toBe(null);
+    });
+  });
+
+  describe('getActionCommand', () => {
+    it('should return action comamand when app key and key are defined in action step', async () => {
+      const step = new Step();
+      step.type = 'action';
+      step.appKey = 'ntfy';
+      step.key = 'sendMessage';
+
+      const findOneByKeySpy = vi.spyOn(App, 'findOneByKey');
+      const actionCommand = await step.getActionCommand();
+
+      expect(findOneByKeySpy).toHaveBeenCalledWith(step.appKey);
+      expect(actionCommand.key).toBe(step.key);
+    });
+
+    it('should return null when key is not defined', async () => {
+      const step = new Step();
+      step.type = 'action';
+      step.appKey = 'ntfy';
+
+      expect(await step.getActionCommand()).toBe(null);
     });
   });
 });
