@@ -11,6 +11,7 @@ import Step from './step.js';
 import Subscription from './subscription.ee.js';
 import UsageData from './usage-data.ee.js';
 import User from './user.js';
+import { createUser } from '../../test/factories/user.js';
 
 describe('User model', () => {
   it('tableName should return correct name', () => {
@@ -184,5 +185,26 @@ describe('User model', () => {
     const expectedAttributes = ['acceptInvitationUrl'];
 
     expect(virtualAttributes).toStrictEqual(expectedAttributes);
+  });
+
+  it('generateResetPasswordToken should persist a random reset password token with the current date', async () => {
+    vi.useFakeTimers();
+
+    const date = new Date(2024, 10, 11, 15, 17, 0, 0);
+    vi.setSystemTime(date);
+
+    const user = await createUser({
+      resetPasswordToken: null,
+      resetPasswordTokenSentAt: null,
+    });
+
+    await user.generateResetPasswordToken();
+
+    const refetchedUser = await user.$query();
+
+    expect(refetchedUser.resetPasswordToken.length).toBe(128);
+    expect(refetchedUser.resetPasswordTokenSentAt).toStrictEqual(date);
+
+    vi.useRealTimers();
   });
 });
