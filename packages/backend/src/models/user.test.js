@@ -11,6 +11,7 @@ import Step from './step.js';
 import Subscription from './subscription.ee.js';
 import UsageData from './usage-data.ee.js';
 import User from './user.js';
+import { createUser } from '../../test/factories/user.js';
 
 describe('User model', () => {
   it('tableName should return correct name', () => {
@@ -184,5 +185,22 @@ describe('User model', () => {
     const expectedAttributes = ['acceptInvitationUrl'];
 
     expect(virtualAttributes).toStrictEqual(expectedAttributes);
+  });
+
+  it('acceptInvitation should persist given password, set user active and remove invitation token', async () => {
+    const user = await createUser({
+      invitationToken: 'invitation-token',
+      invitationTokenSentAt: '2024-11-11T12:26:00.000Z',
+      status: 'invited',
+    });
+
+    await user.acceptInvitation('new-password');
+
+    const refetchedUser = await user.$query();
+
+    expect(refetchedUser.invitationToken).toBe(null);
+    expect(refetchedUser.invitationTokenSentAt).toBe(null);
+    expect(refetchedUser.status).toBe('active');
+    expect(await refetchedUser.login('new-password')).toBe(true);
   });
 });
