@@ -11,6 +11,7 @@ import Step from './step.js';
 import Subscription from './subscription.ee.js';
 import UsageData from './usage-data.ee.js';
 import User from './user.js';
+import { createUser } from '../../test/factories/user.js';
 
 describe('User model', () => {
   it('tableName should return correct name', () => {
@@ -184,5 +185,19 @@ describe('User model', () => {
     const expectedAttributes = ['acceptInvitationUrl'];
 
     expect(virtualAttributes).toStrictEqual(expectedAttributes);
+  });
+
+  describe('login', () => {
+    it('should return true when the given password matches with the user password', async () => {
+      const user = await createUser({ password: 'sample-password' });
+
+      expect(await user.login('sample-password')).toBe(true);
+    });
+
+    it('should return false when the given password does not match with the user password', async () => {
+      const user = await createUser({ password: 'sample-password' });
+
+      expect(await user.login('wrong-password')).toBe(false);
+    });
   });
 });
